@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  
+<div class="container" style="padding-top:10px">
+
+  <form method="get">
+    {{ form.as_p }}
+    <button type="submit">search</button>
+  </form>
+
+  {% if search_result %}
+    <hr>
+    {% if search_result.success %}
+      {% for result in search_result.results %}
+        <a href={% url 'movieAPI:alternative' movie_id=result.id title=result.title %}>
+        <div class="container">
+        <h2>{{ result.title }}</h2>
+        <img src="http://image.tmdb.org/t/p/w185/{{result.poster_path}}">
+        
+        </div>
+        
+        </a>
+        
+      {% endfor %}
+    {% else %}
+      <p><em>{{ search_result.message }}</em></p>
+    {% endif %}
+  {% endif %}
+  </div>
+ 
+
+{% endblock %}

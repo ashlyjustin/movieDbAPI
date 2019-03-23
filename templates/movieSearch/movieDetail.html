@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="section"><h3> Alternative titles for : {{alternative_title.title}}</h3>
+  {% if alternative_title %}
+    <hr>
+    {% if alternative_title.success %}
+      <ul>{% for result in alternative_title.titles %}
+        <li>{{ result.title }}</li>
+        
+        
+      {% endfor %}</ul>
+    {% else %}
+      <p><em>{{ alternative.message }}</em></p>
+    {% endif %}
+  {% endif %}</div>
+
+  <div>
+  <h3>{{credits.id}}</h3>
+  </div>
+
+
+
+{% endblock %}
