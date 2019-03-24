@@ -2,7 +2,7 @@
 
 ### TO TRY THE DEPLOYED WEB APP GO [HERE](https://demo-task-app.herokuapp.com/)
 
-![APP SCREENSHOT](Paste github link here)
+![APP SCREENSHOT]https://raw.githubusercontent.com/ashlyjustin/movieDbAPI/master/SS.png
 
 `git clone https://github.com/ashlyjustin/movieDbAPI.git`
 
