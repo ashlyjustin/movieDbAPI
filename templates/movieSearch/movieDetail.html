@@ -34,7 +34,9 @@
     
     {% endfor %}</ul>
     </div>
+
   {% comment %} Cast Crew Info {% endcomment %}
+  {% for cast in allAPI.credit.cast %}
   <div>
   <h3>Cast Members are:</h3>
   <div class="row">
@@ -51,11 +53,14 @@
 
         </div>
         {% endif %}
-        {% endfor %}</div>
-  <hr>
+        {% endfor %}
+    </div>{% endif %}
+
+  {% if allAPI.credit.crew%}
    <div>
   <h3>Crew Members are:</h3>
   <div class="row">
+  
   {% for crew in allAPI.credit.crew %}
         {% if crew.profile_path %}
 
@@ -71,6 +76,7 @@
         {% endif %}
         {% endfor %}
     </div>
+    {% endif %}
 <br>
 <hr>
 <br>

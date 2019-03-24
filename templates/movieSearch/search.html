@@ -20,7 +20,7 @@
       <div class="col s12 m4 l3">
           <div class="card-panel grey lighten-5 z-depth-1">
             <a href={% url 'movieAPI:movie_data' movie_id=result.id title=result.title %}>
-            <span class="card-title">{{ result.title }}</span></a>
+            <span class="card-title"><h5>{{ result.title }}</h5></span></a>
               <div class="card-image">
                 <img class="responsive-img" src="http://image.tmdb.org/t/p/w185/{{result.poster_path}}">
               </div>               
