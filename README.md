@@ -31,7 +31,7 @@ _Change `ALLOWED HOSTS AS SHOWN:` -> `ALLOWED HOSTS = []`_
 
 ### From project `root` directory terminal
 
-RUN `python manage.py -runserver`
+RUN `python manage.py runserver`
 
 ### It will run locally at `localhost:8000`
 
