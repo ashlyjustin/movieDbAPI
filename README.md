@@ -4,10 +4,11 @@
 
 ![APP SCREENSHOT](https://raw.githubusercontent.com/ashlyjustin/movieDbAPI/master/SS.png)
 
-`git clone https://github.com/ashlyjustin/movieDbAPI.git`
-
 ## To run locally
 ### Create a virtual envirornment and activate it
+### Clone the repository
+
+`git clone https://github.com/ashlyjustin/movieDbAPI.git`
 
 ### Run in terminal
 `cd movieDbAPI`
