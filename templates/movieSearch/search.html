@@ -8,7 +8,8 @@
     {{ form.as_p }}
     <button class="waves-effect waves-light btn-large  center-align"  type="submit"><i class="material-icons left">search</i>Search</button>
     
-  </form> </div>
+  </form> 
+</div>
 
   {% if search_result %}
     
@@ -16,16 +17,19 @@
     <br>
     <div class="row">
       {% for result in search_result.results %}
-    <div class="col s12 m4 l3">
-        <div class="card-panel grey lighten-5 z-depth-1">
-        <a href={% url 'movieAPI:movie_data' movie_id=result.id title=result.title %}>
-        <span class="card-title">{{ result.title }}</span>
-        <img class="responsive-img" src="http://image.tmdb.org/t/p/w185/{{result.poster_path}}">               
-        </a></div>
-    </div> 
+      <div class="col s12 m4 l3">
+          <div class="card-panel grey lighten-5 z-depth-1">
+            <a href={% url 'movieAPI:movie_data' movie_id=result.id title=result.title %}>
+            <span class="card-title">{{ result.title }}</span></a>
+              <div class="card-image">
+                <img class="responsive-img" src="http://image.tmdb.org/t/p/w185/{{result.poster_path}}">
+              </div>               
+          </div>
+      </div> 
     
         
-      {% endfor %}</div> 
+      {% endfor %}
+    </div> 
     {% else %}
       <p><em>{{ search_result.message }}</em></p>
     {% endif %}
