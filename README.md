@@ -6,6 +6,7 @@
 
 `git clone https://github.com/ashlyjustin/movieDbAPI.git`
 
+## To run locally
 ### Create a virtual envirornment and activate it
 
 ### Run in terminal
