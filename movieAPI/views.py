@@ -1,6 +1,6 @@
 
 from django.shortcuts import render
-from .forms import DictionaryForm
+from .forms import MovieForm
 from decouple import config
 import requests
 from django.http import HttpResponse
@@ -8,22 +8,25 @@ import datetime
 MovieDB_KEY = config('MovieDB_APP_Key')
 
 
-def oxford(request):
+def movie_search(request):
     search_result = {}
     if 'movie' in request.GET:
-        form = DictionaryForm(request.GET)
+        form = MovieForm(request.GET)
         if form.is_valid():
             search_result = form.search()
     else:
-        form = DictionaryForm()
+        form = MovieForm()
     return render(request, 'movieSearch/search.html', {'form': form, 'search_result': search_result})
 
 def movie_data(request,movie_id,title):
         result = {}
     
-        endpoint = 'https://api.themoviedb.org/3/movie/{movie}/{api}?api_key={api_key}&language=en-US'
+        endpoint = 'https://api.themoviedb.org/3/movie/{movie}/{api}?api_key={api_key}'
+        endpoint_detail = 'https://api.themoviedb.org/3/movie/{movie}?api_key={api_key}'
 
-        
+
+        detail_url=endpoint_detail.format(movie=movie_id,api_key=MovieDB_KEY)
+        detail_result={}
         title_url =endpoint.format(movie=movie_id,api="alternative_titles",api_key=MovieDB_KEY)
         title_result={}
         credit_url=endpoint.format(movie=movie_id,api="credits",api_key=MovieDB_KEY)
@@ -39,12 +42,28 @@ def movie_data(request,movie_id,title):
         reviews_url=endpoint.format(movie=movie_id,api="reviews",api_key=MovieDB_KEY)
         reviews_result={}
 
+        
+    #FOR details
+        detail_response = requests.get(detail_url)
+        if detail_response.status_code == 200:  # SUCCESS
+            detail_result = detail_response.json()
+            detail_result['success'] = True
+            detail_result['name']=title
+            
+        else:
+            detail_result['success'] = False
+            if detail_response.status_code == 404:  # NOT FOUND
+                detail_result['message'] = 'No entry found for "%s"' % movie_id
+            else:
+                detail_result['message'] = 'Not available at the moment. Please try again later.'
+        
+
         #FOR ALTERNATIVE TITLE
         title_response = requests.get(title_url)
         if title_response.status_code == 200:  # SUCCESS
             title_result = title_response.json()
             title_result['success'] = True
-            title_result['title']=title
+            title_result['name']=title
             
         else:
             title_result['success'] = False
@@ -152,6 +171,7 @@ def movie_data(request,movie_id,title):
                 reviews_result['message'] = 'Not available at the moment. Please try again later.'
         
         #combined Result
+        result['detail']=detail_result
         result['atlernative_title']=title_result
         result['credit']=credit_result
         result['image']=image_result
@@ -159,7 +179,6 @@ def movie_data(request,movie_id,title):
         result['release']=release_result
         result['video']=videos_result
         result['reviews']=reviews_result
-        
         return render(request, 'movieSearch/movieDetail.html', { 'allAPI': result})
 
 

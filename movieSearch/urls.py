@@ -21,6 +21,6 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^$',views.HomePage.as_view(),name='home'),
+    # url(r'^$',views.HomePage.as_view(),name='home'),
     url(r'^',include('movieAPI.urls',namespace="movieAPI"))
 ]

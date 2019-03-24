@@ -1,31 +1,60 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html>
 	<head>
-		<title>Info Forum</title>
-		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-		<!-- Optional theme -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-<!-- Latest compiled and minified JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+		<title>Movie Browser</title>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+      
+<link rel='stylesheet' href="{% static 'css/body.css' %}">
+   
+      <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	</head>
+    {% comment %} <style>
+    .text-block {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: black;
+    color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+  } {% endcomment %}
+    </style>
 	<body>
 
-		<nav class="navbar " role='navigation' id='navigation'>
-			<div class="container">
-				<a class="navbar-brand " href=""><h1>Search out movies </h1></a>
-				
-			</div>
-		</nav>
-
-		<div class="container">
+		<div class="section" style="width:100%;">
 		{% block content %}
 
 
 		{% endblock %}
 	</div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+       
+      
+   <script type="text/javascript">
+   document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.carousel');
+    var options={dist: -100,
+    padding: 0,
+    
+    indicators: true,
+    duration: 100,
+    numVisible:15,
+    fullWidth:true}
+    var instances = M.Carousel.init(elems, options);
+    instances.next();
+    instances.prev();
+    autoplay()   
+function autoplay() {
+    $('.carousel').carousel('next');
+    setTimeout(autoplay, 4500);
+}
+  });
+
+  </script>
 	</body>
 </html>

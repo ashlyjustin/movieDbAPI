@@ -1,24 +1,96 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <div class="section"><h3> Alternative titles for : {{alternative_title.title}}</h3>
-  {% if alternative_title %}
-    <hr>
-    {% if alternative_title.success %}
-      <ul>{% for result in alternative_title.titles %}
-        <li>{{ result.title }}</li>
-        
-        
-      {% endfor %}</ul>
+  <div class="container grey lighten-4" style="padding:2%">
+  <div class="center-align">
+  <img src="http://image.tmdb.org/t/p/w1280/{{allAPI.detail.poster_path}}" style="max-height:600px" >
+  <h1> {{allAPI.detail.original_title}}</h1>
+  <h5>{{allAPI.detail.overview}}</h5>
+  <p>Release date : {{allAPI.detail.release_date}}
+
+  
+  </div>
+  
+  <div class="container">
+  <hr>
+  <h6>Also known as :</h6>
+  {% if allAPI.atlernative_title %}
+    
+    {% comment %} {% if allAPI.alternative_title.success %} {% endcomment %}
+      <ul>{% for names in allAPI.atlernative_title.titles %}
+        <li style="display:inline-block">{{ names.title }}, </li>
+        {% endfor %}
+      </ul>
     {% else %}
-      <p><em>{{ alternative.message }}</em></p>
-    {% endif %}
+      <p><em>{{ allAPI.alternative_title.message }}</em></p>
+    {% comment %} {% endif %} {% endcomment %}
   {% endif %}</div>
 
+   <div class="align-content:center">
+    <ul style=" display:inline-block">
+    {% for keyword in allAPI.keywords.keywords %}
+    
+    <li style=" display:inline-block"><button class="btn-small">#{{keyword.name}}</button></li>
+
+    
+    {% endfor %}</ul>
+    </div>
+
   <div>
-  <h3>{{credits.id}}</h3>
+  <h3>Cast Members are:</h3>
+  <div class="row">
+  {% for cast in allAPI.credit.cast %}
+        {% if cast.profile_path %}
+
+        <div class="col s3">
+        
+        <p>{{ cast.name }}</p>
+        <p>Role : {{ cast.character }}</p>
+        
+        <img src="http://image.tmdb.org/t/p/w185/{{cast.profile_path}}">
+        
+
+        </div>
+        {% endif %}
+        {% endfor %}</div>
+  <hr>
+   <div>
+  <h3>Crew Members are:</h3>
+  <div class="row">
+  {% for crew in allAPI.credit.crew %}
+        {% if crew.profile_path %}
+
+        <div class="col s3">
+        
+        <p>{{ crew.name }}</p>
+        <p>Department : {{ crew.department }}</p>
+        
+        <img src="http://image.tmdb.org/t/p/w185/{{crew.profile_path}}">
+        
+
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+<br>
+<hr>
+<br>
+<h4>Gallery </h4>
+<div class="carousel">
+{% for poster in allAPI.image.backdrops%}
+    <a class="carousel-item" href="#one!"><img height="300px" src="http://image.tmdb.org/t/p/w780/{{poster.file_path}}"></a>
+{% endfor %}
+</div>
+  <hr>
+  <div class="container">
+    <h4> Popular Reviews </h4>
+    {% for review in allAPI.reviews.results%}
+      <h5>{{review.author}}</h5>
+      <q>{{review.content}}</q>
+    {% endfor%}
+
   </div>
 
-
+</div>
 
 {% endblock %}

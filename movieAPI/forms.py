@@ -4,7 +4,7 @@ import requests
 import os
 from decouple import config
 
-class DictionaryForm(forms.Form):
+class MovieForm(forms.Form):
     movie = forms.CharField(max_length=100)
 
     def search(self):

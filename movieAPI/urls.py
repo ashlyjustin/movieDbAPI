@@ -9,8 +9,8 @@ app_name ='movieAPI'
 
 urlpatterns = [
    
-    path('movie/', views.oxford, name='oxford'),
-    path('movie/<movie_id>/<title>',views.movie_data,name='movie_data'),
+    path('', views.movie_search, name='oxford'),
+    path('<movie_id>/<title>',views.movie_data,name='movie_data'),
     
     
 ]

@@ -2,32 +2,37 @@
 
 {% block content %}
   
-<div class="container" style="padding-top:10px">
+<div class="container " style="padding-top:10px">
 
   <form method="get">
     {{ form.as_p }}
-    <button type="submit">search</button>
-  </form>
+    <button class="waves-effect waves-light btn-large  center-align"  type="submit"><i class="material-icons left">search</i>Search</button>
+    
+  </form> </div>
 
   {% if search_result %}
-    <hr>
+    
     {% if search_result.success %}
+    <br>
+    <div class="row">
       {% for result in search_result.results %}
-        <a href={% url 'movieAPI:alternative' movie_id=result.id title=result.title %}>
-        <div class="container">
-        <h2>{{ result.title }}</h2>
-        <img src="http://image.tmdb.org/t/p/w185/{{result.poster_path}}">
+    <div class="col s3">
+        <div class="card-panel grey lighten-5 z-depth-1">
+        <a href={% url 'movieAPI:movie_data' movie_id=result.id title=result.title %}>
+
         
-        </div>
+        <h5>{{ result.title }}</h5>
+        <img src="http://image.tmdb.org/t/p/w185/{{result.poster_path}}">               
+        </a></div>
+    </div> 
+    
         
-        </a>
-        
-      {% endfor %}
+      {% endfor %}</div> 
     {% else %}
       <p><em>{{ search_result.message }}</em></p>
     {% endif %}
   {% endif %}
-  </div>
+ 
  
 
 {% endblock %}
