@@ -16,13 +16,13 @@
     <br>
     <div class="row">
       {% for result in search_result.results %}
-    <div class="col s3">
+    <div class="col s4 m4 l2">
         <div class="card-panel grey lighten-5 z-depth-1">
         <a href={% url 'movieAPI:movie_data' movie_id=result.id title=result.title %}>
 
         
         <h5>{{ result.title }}</h5>
-        <img src="http://image.tmdb.org/t/p/w185/{{result.poster_path}}">               
+        <img class="responsive-img" src="http://image.tmdb.org/t/p/w185/{{result.poster_path}}">               
         </a></div>
     </div> 
     

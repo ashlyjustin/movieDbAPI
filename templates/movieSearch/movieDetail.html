@@ -3,7 +3,7 @@
 {% block content %}
   <div class="container grey lighten-4" style="padding:2%">
     <div class="center-align">
-      <img src="http://image.tmdb.org/t/p/w1280/{{allAPI.detail.poster_path}}" style="max-height:600px" >
+      <img class="responsive-img" src="http://image.tmdb.org/t/p/w1280/{{allAPI.detail.poster_path}}" style="max-height:600px" >
       <h1> {{allAPI.detail.original_title}}</h1>
       <h5>{{allAPI.detail.overview}}</h5>
       <p>Release date : {{allAPI.detail.release_date}}
@@ -41,12 +41,12 @@
   {% for cast in allAPI.credit.cast %}
         {% if cast.profile_path %}
 
-        <div class="col s3">
+        <div class="col s4 m4 l2 ">
         
         <p>{{ cast.name }}</p>
         <p>Role : {{ cast.character }}</p>
         
-        <img src="http://image.tmdb.org/t/p/w185/{{cast.profile_path}}">
+        <img class="responsive-img" src="http://image.tmdb.org/t/p/w185/{{cast.profile_path}}">
         
 
         </div>
@@ -59,12 +59,12 @@
   {% for crew in allAPI.credit.crew %}
         {% if crew.profile_path %}
 
-        <div class="col s3">
+        <div class="col s4 m4 l2">
         
         <p>{{ crew.name }}</p>
         <p>Department : {{ crew.department }}</p>
         
-        <img src="http://image.tmdb.org/t/p/w185/{{crew.profile_path}}">
+        <img class="responsive-img" src="http://image.tmdb.org/t/p/w185/{{crew.profile_path}}">
         
 
         </div>
@@ -78,7 +78,7 @@
 <h4>Gallery </h4>
 <div class="carousel">
 {% for poster in allAPI.image.backdrops%}
-    <a class="carousel-item" href="#one!"><img height="300px" src="http://image.tmdb.org/t/p/w780/{{poster.file_path}}"></a>
+    <a class="carousel-item" href="#one!"><img class="responsive-img" height="300px" src="http://image.tmdb.org/t/p/w780/{{poster.file_path}}"></a>
 {% endfor %}
 </div>
   {% comment %} Reviews Info {% endcomment %}
