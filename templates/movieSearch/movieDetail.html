@@ -2,30 +2,29 @@
 
 {% block content %}
   <div class="container grey lighten-4" style="padding:2%">
-  <div class="center-align">
-  <img src="http://image.tmdb.org/t/p/w1280/{{allAPI.detail.poster_path}}" style="max-height:600px" >
-  <h1> {{allAPI.detail.original_title}}</h1>
-  <h5>{{allAPI.detail.overview}}</h5>
-  <p>Release date : {{allAPI.detail.release_date}}
-
+    <div class="center-align">
+      <img src="http://image.tmdb.org/t/p/w1280/{{allAPI.detail.poster_path}}" style="max-height:600px" >
+      <h1> {{allAPI.detail.original_title}}</h1>
+      <h5>{{allAPI.detail.overview}}</h5>
+      <p>Release date : {{allAPI.detail.release_date}}
+    </div>
   
-  </div>
-  
-  <div class="container">
-  <hr>
-  <h6>Also known as :</h6>
-  {% if allAPI.atlernative_title %}
-    
-    {% comment %} {% if allAPI.alternative_title.success %} {% endcomment %}
-      <ul>{% for names in allAPI.atlernative_title.titles %}
-        <li style="display:inline-block">{{ names.title }}, </li>
-        {% endfor %}
-      </ul>
-    {% else %}
-      <p><em>{{ allAPI.alternative_title.message }}</em></p>
-    {% comment %} {% endif %} {% endcomment %}
-  {% endif %}</div>
+    <div class="container">
+    <hr>
+    <h6>Also known as :</h6>
+    {% if allAPI.atlernative_title %}
 
+        <ul>{% for names in allAPI.atlernative_title.titles %}
+          <li style="display:inline-block">{{ names.title }}, </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p><em>{{ allAPI.alternative_title.message }}</em></p>
+
+    {% endif %}
+    </div>
+  
+    {% comment %} Keywords Info {% endcomment %}
    <div class="align-content:center">
     <ul style=" display:inline-block">
     {% for keyword in allAPI.keywords.keywords %}
@@ -35,7 +34,7 @@
     
     {% endfor %}</ul>
     </div>
-
+  {% comment %} Cast Crew Info {% endcomment %}
   <div>
   <h3>Cast Members are:</h3>
   <div class="row">
@@ -75,21 +74,34 @@
 <br>
 <hr>
 <br>
+{% comment %} Images Info {% endcomment %}
 <h4>Gallery </h4>
 <div class="carousel">
 {% for poster in allAPI.image.backdrops%}
     <a class="carousel-item" href="#one!"><img height="300px" src="http://image.tmdb.org/t/p/w780/{{poster.file_path}}"></a>
 {% endfor %}
 </div>
-  <hr>
+  {% comment %} Reviews Info {% endcomment %}
   <div class="container">
     <h4> Popular Reviews </h4>
+    <hr>
     {% for review in allAPI.reviews.results%}
       <h5>{{review.author}}</h5>
       <q>{{review.content}}</q>
     {% endfor%}
 
   </div>
+  {% comment %} Trailer Info {% endcomment %}
+  <div>
+    <h4>Trailer : </h4>
+    <hr>
+    {% for videos in allAPI.video.results%}
+      
+      <a href="https://www.youtube.com/watch?v={{videos.key}}">{{videos.name}}</a>
+      
+    {% endfor%}
+  </div>
+
 
 </div>
 
