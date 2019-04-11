@@ -21,7 +21,7 @@
 
 ### Add the following lines to the .env file
 
-`MovieDB_APP_Key=958038249ce6d4ddc29c531ce3164df3`
+`MovieDB_APP_Key=<Key>
 
 `SECRET_KEY=zs-*8pb5k7n%&_#s4x56avou-ulza+p*ma_*k6-vh+k1gete@w`
 
