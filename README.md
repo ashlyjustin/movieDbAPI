@@ -23,7 +23,7 @@
 
 `MovieDB_APP_Key=<Key>
 
-`SECRET_KEY=zs-*8pb5k7n%&_#s4x56avou-ulza+p*ma_*k6-vh+k1gete@w`
+`SECRET_KEY=zs-*8####k7n%&_#s4x56avou-ulza+p*ma_*k6-vh+k1gete@w`
 
 ### Go to `settings.py`
 
