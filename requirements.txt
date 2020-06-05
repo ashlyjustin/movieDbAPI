@@ -1,6 +1,6 @@
 certifi==2019.3.9
 chardet==3.0.4
-Django==2.1.5
+Django==2.2.13
 idna==2.8
 gunicorn==19.7.1
 python-decouple==3.1
